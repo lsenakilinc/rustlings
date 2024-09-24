@@ -1,5 +1,9 @@
+
 fn main() {
-    // You can optionally experiment here.
+    let x =(11,2,3) ;
+    let second =x.1;
+
+    println!(" {} This is not the second number in tuple", x.2);
 }
 
 #[cfg(test)]
