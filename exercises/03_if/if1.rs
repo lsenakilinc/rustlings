@@ -4,11 +4,27 @@ fn bigger(a: i32, b: i32) -> i32 {
     // Do not use:
     // - another function call
     // - additional variables
+    if a >b {
+        println!("a:{} is bigger than b: {}", a,b);  
+        a 
+    }
+    else if b >a {
+    
+        println!("b: {} is bigger than a: {}", b,a);   
+        b
+    }
+    else{
+        println!("they are equal");
+        a //or b doesnt matter
+    }
 }
 
 fn main() {
     // You can optionally experiment here.
+    let tryit = bigger(56,89);
+    println!("the bigger one is:{}", tryit);
 }
+
 
 // Don't mind this for now :)
 #[cfg(test)]
