@@ -46,12 +46,44 @@ impl State {
     fn process(&mut self, message: Message) {
         // TODO: Create a match expression to process the different message
         // variants using the methods defined above.
+        match message {
+            Message::Resize { width, height } => self.resize(width, height),
+            Message::Move(point) => self.move_position(point),
+            Message::Echo(s) => self.echo(s),
+            Message::ChangeColor(r, g, b) => self.change_color(r, g, b),
+            Message::Quit => self.quit(),
+        }
     }
 }
 
 fn main() {
-    // You can optionally experiment here.
+    let mut state = State {
+        width: 100,
+        height: 100,
+        position: Point { x: 0, y: 0 },
+        message: String::from("Initial message"),
+        color: (255, 255, 255),
+        quit: false,
+    };
+
+    println!("Initial state: {:?}", state);
+
+    state.process(Message::Resize { width: 200, height: 300 });
+    println!("After Resize: {:?}", state);
+
+    state.process(Message::Move(Point { x: 50, y: 75 }));
+    println!("After Move: {:?}", state);
+
+    state.process(Message::Echo(String::from("Updated message!")));
+    println!("After Echo: {:?}", state);
+
+    state.process(Message::ChangeColor(0, 128, 255));
+    println!("After ChangeColor: {:?}", state);
+
+    state.process(Message::Quit);
+    println!("After Quit: {:?}", state);
 }
+
 
 #[cfg(test)]
 mod tests {
